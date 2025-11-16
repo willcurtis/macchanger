@@ -1,8 +1,8 @@
-# macchanger (modernised)
+# macchanger (modernised fork)
 
 macchanger for macOS – spoof / fake MAC addresses from the command line.
 
-This is an updated and extended version of the original [`macchanger` script by **shilch**](https://github.com/shilch/macchanger).  
+This is an updated and extended fork of the original [`macchanger` script by **shilch**](https://github.com/shilch/macchanger).  
 All credit for the original idea and implementation goes to the upstream author.
 
 ## Features
@@ -16,18 +16,27 @@ All credit for the original idea and implementation goes to the upstream author.
 - Safer implementation:
   - Uses `set -euo pipefail`
   - Stricter error handling and input validation
-  - Works on recent macOS releases (Intel & Apple Silicon)
+  - Works on recent macOS releases (Intel & Apple Silicon)
+- Output colouring:
+  - Automatically disabled when stdout is not a TTTY
+  - Respects the standard `NO_COLOR` environment variable
 
 Tested on recent macOS versions, but it should work on any reasonably modern macOS with `bash`, `ifconfig`, `networksetup`, and `openssl` available.
 
 ## Installation
+
+### Direct install (curl)
+
+```sh
+sudo sh -c "curl -fsSL https://raw.githubusercontent.com/willcurtis/macchanger/main/macchanger.sh > /usr/local/bin/macchanger && chmod +x /usr/local/bin/macchanger"
+```
 
 ### Homebrew (recommended)
 
 1. Create or use an existing tap, for example:
 
    ```sh
-   brew tap yourgithubuser/tap https://github.com/yourgithubuser/homebrew-tap
+   brew tap willcurtis/tap https://github.com/willcurtis/homebrew-tap
    ```
 
 2. Add a `macchanger.rb` formula to your tap with contents similar to:
@@ -35,17 +44,17 @@ Tested on recent macOS versions, but it should work on any reasonably modern mac
    ```ruby
    class Macchanger < Formula
      desc "Change or spoof your MAC address on macOS"
-     homepage "https://github.com/yourgithubuser/macchanger"
-     url "https://github.com/yourgithubuser/macchanger/archive/refs/tags/v1.0.0.tar.gz"
+     homepage "https://github.com/willcurtis/macchanger"
+     url "https://github.com/willcurtis/macchanger/archive/refs/tags/v1.0.0.tar.gz"
      sha256 "<fill-in-from-github-release>"
-     license :public_domain
+     version "1.0.0"
 
      def install
        bin.install "macchanger.sh" => "macchanger"
      end
 
      test do
-       assert_match "Version:", shell_output("#{bin}/macchanger --version 2>&1")
+       assert_match "Version:", shell_output("#<built-in function bin>/macchanger --version 2>&1")
      end
    end
    ```
@@ -53,10 +62,10 @@ Tested on recent macOS versions, but it should work on any reasonably modern mac
 3. Install via Homebrew:
 
    ```sh
-   brew install yourgithubuser/tap/macchanger
+   brew install willcurtis/tap/macchanger
    ```
 
-Replace `yourgithubuser` and the GitHub URL with your own GitHub account or organisation.
+Replace the `sha256` with the value from the GitHub release tarball once you create it.
 
 ### Manual install
 
@@ -64,12 +73,6 @@ Download `macchanger.sh` and place it somewhere on your `$PATH`, for example:
 
 ```sh
 sudo install -m 0755 macchanger.sh /usr/local/bin/macchanger
-```
-
-Or using `curl`:
-
-```sh
-sudo sh -c "curl -fsSL https://raw.githubusercontent.com/yourgithubuser/macchanger/main/macchanger.sh   > /usr/local/bin/macchanger && chmod +x /usr/local/bin/macchanger"
 ```
 
 ## Usage
@@ -149,7 +152,6 @@ If no OUI file can be found, the vendor will be shown as `Unknown`, but the rest
 ## Credits
 
 - Original script and idea by **shilch** – <https://github.com/shilch/macchanger>
-- Modernisation, vendor lookup and Homebrew formula suggestions by community contributors.
+- Modernisation, vendor lookup and Homebrew packaging by **Will Curtis** and community contributors.
 
-If you publish your fork, please make sure to keep attribution to the original author and clearly document any changes you make.
-
+If you publish further changes, please keep attribution to the original author and clearly document any modifications.

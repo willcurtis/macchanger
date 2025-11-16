@@ -11,17 +11,19 @@ The format roughly follows [Keep a Changelog](https://keepachangelog.com/en/1.0.
 - New `--help` (`-h`) option with detailed usage text.
 - New `--list-devices` (`-l`) option to list network interfaces as seen by macOS.
 - Best-effort vendor / manufacturer lookup based on the MAC address OUI.
-- Environment variable `MACCHANGER_OUI_PATH` to point at a custom OUI database.
+- Environment variables:
+  - `MACCHANGER_OUI_PATH` to point at a custom OUI database.
+  - `NO_COLOR` to disable coloured output.
 
 ### Changed
 
 - Rewritten script for modern shell best practices:
   - Uses `#!/usr/bin/env bash` and `set -euo pipefail`.
   - Proper quoting of variables and stricter error handling.
-  - Clear, colour-coded log messages.
-- More robust Wi‑Fi handling:
+  - Clear, optional colour-coded log messages (TTY-aware).
+- More robust Wi-Fi handling:
   - Detects the `airport` binary path on newer macOS versions.
-  - Disassociates Wi‑Fi before changing the MAC, then triggers hardware re-detection.
+  - Disassociates Wi-Fi before changing the MAC, then triggers hardware re-detection.
 - Random MAC generation now explicitly ensures a locally-administered, unicast address.
 - Improved user-facing output, including clearer error messages.
 
