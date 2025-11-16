@@ -27,7 +27,7 @@ Tested on recent macOS versions, but it should work on any reasonably modern mac
 1. Create or use an existing tap, for example:
 
    ```sh
-   brew tap yourgithubuser/tap https://github.com/yourgithubuser/homebrew-tap
+   brew tap yourgithubuser/tap https://github.com/willcurtis/homebrew-tap
    ```
 
 2. Add a `macchanger.rb` formula to your tap with contents similar to:
@@ -35,8 +35,8 @@ Tested on recent macOS versions, but it should work on any reasonably modern mac
    ```ruby
    class Macchanger < Formula
      desc "Change or spoof your MAC address on macOS"
-     homepage "https://github.com/yourgithubuser/macchanger"
-     url "https://github.com/yourgithubuser/macchanger/archive/refs/tags/v1.0.0.tar.gz"
+     homepage "https://github.com/willcurtis/macchanger"
+     url "https://github.com/yourgithubuser/willcurtis/archive/refs/tags/v1.0.0.tar.gz"
      sha256 "<fill-in-from-github-release>"
      license :public_domain
 
@@ -53,10 +53,8 @@ Tested on recent macOS versions, but it should work on any reasonably modern mac
 3. Install via Homebrew:
 
    ```sh
-   brew install yourgithubuser/tap/macchanger
+   brew install willcurtis/tap/macchanger
    ```
-
-Replace `yourgithubuser` and the GitHub URL with your own GitHub account or organisation.
 
 ### Manual install
 
@@ -69,7 +67,7 @@ sudo install -m 0755 macchanger.sh /usr/local/bin/macchanger
 Or using `curl`:
 
 ```sh
-sudo sh -c "curl -fsSL https://raw.githubusercontent.com/yourgithubuser/macchanger/main/macchanger.sh   > /usr/local/bin/macchanger && chmod +x /usr/local/bin/macchanger"
+sudo sh -c "curl -fsSL https://raw.githubusercontent.com/willcurtis/macchanger/main/macchanger.sh   > /usr/local/bin/macchanger && chmod +x /usr/local/bin/macchanger"
 ```
 
 ## Usage
