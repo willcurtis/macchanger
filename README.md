@@ -67,7 +67,7 @@ sudo install -m 0755 macchanger.sh /usr/local/bin/macchanger
 Or using `curl`:
 
 ```sh
-sudo sh -c "curl -fsSL https://raw.githubusercontent.com/willcurtis/macchanger/main/macchanger.sh   > /usr/local/bin/macchanger && chmod +x /usr/local/bin/macchanger"
+sudo sh -c "curl -fsSL https://raw.githubusercontent.com/willcurtis/macchanger/refs/heads/master/macchanger.sh   > /usr/local/bin/macchanger && chmod +x /usr/local/bin/macchanger"
 ```
 
 ## Usage
