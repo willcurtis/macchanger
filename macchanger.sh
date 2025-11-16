@@ -164,9 +164,9 @@ lookup_vendor() {
   fi
 
   local prefix
-  prefix=${mac:0:8}
-  prefix=${prefix^^}
-  prefix=${prefix//:/-}
+  prefix=${mac:0:8}                               # aa:bb:cc
+  prefix=$(printf '%s' "$prefix" | tr '[:lower:]' '[:upper:]')  # AA:BB:CC
+  prefix=${prefix//:/-}                           # AA-BB-CC
 
   local vendor
   vendor=$(grep -i -m1 -E "^${prefix}[[:space:]]" "${oui_file}" 2>/dev/null | sed -E 's/^[^[:space:]]+[[:space:]]+//')
